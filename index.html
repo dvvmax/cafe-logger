@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Cafes</title>
+
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- iOS Specific Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Cafes" />
+    <link rel="apple-touch-icon" href="icon-180.png" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Places API -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAoIjeYGlhgF4xzCC4gUtgu2eHXXqd1qU&libraries=places&callback=initAutocomplete"
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cafes</h1>
+        <div class="sync-status" id="syncStatus">
+          <span class="sync-dot"></span>
+          <span id="syncText">Syncing...</span>
+        </div>
+      </header>
+
+      <div class="cafe-form">
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="cafeSearch"
+            placeholder="Search for a cafe..."
+            autocomplete="off"
+          />
+          <div class="search-icon">🔍</div>
+        </div>
+
+        <div id="selectedCafeInfo" class="selected-cafe-info" style="display: none">
+          <div class="selected-cafe-name" id="selectedCafeName"></div>
+          <div class="selected-cafe-address" id="selectedCafeAddress"></div>
+        </div>
+
+        <div class="ratings-container">
+          <div class="rating-row">
+            <div class="rating-group">
+              <div class="rating-header">
+                <div class="rating-label">
+                  <span class="rating-icon">☕</span>
+                  <span class="rating-name">Coffee</span>
+                </div>
+                <div class="rating-value" id="coffeeVal">5</div>
+              </div>
+              <div class="slider-container">
+                <input type="range" id="coffee" min="1" max="10" value="5" />
+              </div>
+            </div>
+          </div>
+
+          <div class="rating-row">
+            <div class="rating-group">
+              <div class="rating-header">
+                <div class="rating-label">
+                  <span class="rating-icon">🤝</span>
+                  <span class="rating-name">Service</span>
+                </div>
+                <div class="rating-value" id="serviceVal">5</div>
+              </div>
+              <div class="slider-container">
+                <input type="range" id="service" min="1" max="10" value="5" />
+              </div>
+            </div>
+          </div>
+
+          <div class="rating-row">
+            <div class="rating-group">
+              <div class="rating-header">
+                <div class="rating-label">
+                  <span class="rating-icon">✨</span>
+                  <span class="rating-name">Vibe</span>
+                </div>
+                <div class="rating-value" id="vibeVal">5</div>
+              </div>
+              <div class="slider-container">
+                <input type="range" id="vibe" min="1" max="10" value="5" />
+              </div>
+            </div>
+          </div>
+
+          <div class="rating-row">
+            <div class="rating-group">
+              <div class="rating-header">
+                <div class="rating-label">
+                  <span class="rating-icon">🥐</span>
+                  <span class="rating-name">Pastry</span>
+                </div>
+                <div class="rating-value" id="pastryVal">5</div>
+              </div>
+              <div class="slider-container">
+                <input type="range" id="pastry" min="1" max="10" value="5" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="addCafe()" id="addBtn" disabled>
+          <span id="btnText">Select a cafe to continue</span>
+        </button>
+      </div>
+
+      <div class="cafe-list">
+        <div id="cafeList" class="loading">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Load Firebase configuration and app logic -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
